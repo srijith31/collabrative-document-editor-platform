@@ -1,0 +1,222 @@
+@import 'quill/dist/quill.snow.css';
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  font-family: 'Outfit', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: #e2e8f0;
+  background-color: #0b0b0e;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --bg-primary: #0b0b0e;
+  --bg-secondary: #121217;
+  --bg-tertiary: #1a1a22;
+  --border-color: #1f1f29;
+  --accent-primary: #8a2be2;
+  --accent-secondary: #6366f1;
+  --accent-glow: rgba(138, 43, 226, 0.15);
+  --text-muted: #94a3b8;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  color: #e2e8f0;
+}
+
+.glass-panel {
+  background: rgba(18, 18, 23, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-secondary);
+}
+
+/* Custom Peer Cursor styling overlay in Quill */
+.ql-container {
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 16px !important;
+  border: none !important;
+}
+
+.ql-editor {
+  min-height: 100%;
+  padding: 24px 30px;
+  line-height: 1.8;
+  color: #f1f5f9;
+  outline: none;
+}
+
+.peer-cursor {
+  position: absolute;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.peer-cursor-flag {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  white-space: nowrap;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px 4px 4px 0;
+  color: #fff;
+  pointer-events: none;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.peer-cursor-caret {
+  position: absolute;
+  width: 2px;
+  height: 20px;
+}
+
+/* Fix html2canvas horizontal letter squishing / space collapse in generated PDFs */
+.college-report-editor-paper,
+.college-report-editor-paper *,
+.proposal-editor-paper,
+.proposal-editor-paper *,
+.resume-preview-paper,
+.resume-preview-paper * {
+  letter-spacing: 0.05px !important;
+}
+
+/* Enforce high-fidelity serif font metrics for the College Report to avoid generic browser spacing bugs */
+.college-report-editor-paper,
+.college-report-editor-paper * {
+  font-family: Georgia, Cambria, "Times New Roman", Times, serif !important;
+}
+
+/* Remove browser print headers/footers (date, URL, title) */
+@page {
+  margin: 0;
+  size: A4;
+}
+
+@media print {
+  /* Hide all elements that shouldn't be printed */
+  .no-print {
+    display: none !important;
+  }
+
+  /* Reset layout structure for printing */
+  html, body, #root {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Make containers print-friendly without scrollbars, headers or dark background */
+  .MuiBox-root, .MuiGrid-root {
+    height: auto !important;
+    overflow: visible !important;
+    background-color: transparent !important;
+    border: none !important;
+  }
+
+  /* Expand workspace content to full width */
+  .main-workspace-content {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+  }
+
+  /* Expand proposal preview column to take full space */
+  .proposal-editor-preview-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 1 1 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    overflow: visible !important;
+    display: block !important;
+  }
+
+  /* Styling for A4 print — use padding instead of @page margin since @page margin is 0 */
+  .proposal-editor-paper,
+  .college-report-editor-paper,
+  .resume-preview-paper {
+    position: relative !important;
+    box-sizing: border-box !important;
+    width: 210mm !important; /* Force exact A4 width */
+    max-width: 100% !important;
+    height: 297mm !important; /* Force exact A4 height so footer anchors to bottom */
+    min-height: 297mm !important;
+    box-shadow: none !important;
+    border: none !important;
+    /* 20mm padding replaces the suppressed @page margin */
+    padding: 20mm 20mm !important;
+    margin: 0 !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+
+  /* Prevent horizontal slicing and orphan headings on page breaks */
+  .proposal-section-container,
+  .proposal-team-info-container,
+  .proposal-attachments-container {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  h1, h2, h3, h4, .proposal-section-title {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  p, li, .MuiTypography-root {
+    orphans: 3 !important;
+    widows: 3 !important;
+  }
+}
+
+/* Spacing improvements to prevent headings sticking to content when sections move */
+.proposal-section-title {
+  margin-bottom: 12px !important;
+}
+
+.proposal-section-container {
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+}
