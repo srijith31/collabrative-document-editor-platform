@@ -378,11 +378,11 @@ export const ResumePreview = ({
           </Box>
         );
       }
-      case 'experience-item': {
+      case 'experience-item-header': {
         const exp = experience[block.index];
         if (!exp) return null;
         return (
-          <Box key={exp.id || exp._id} sx={{ mb: '8px' }}>
+          <Box key={exp.id || exp._id} sx={{ mb: block.totalBullets === 0 ? '8px' : '0px' }}>
             {block.index === 0 && renderSectionHeader('Experience')}
             <Box
               className="resume-preview-section"
@@ -404,17 +404,56 @@ export const ResumePreview = ({
                   </Typography>
                 </Box>
               </Box>
-              {renderBullets(exp.description)}
               {renderItemActions('experience', exp.id || exp._id, 'description', exp.description)}
             </Box>
           </Box>
         );
       }
-      case 'projects-item': {
+      case 'experience-item-bullet-line': {
+        const cleanLine = block.text;
+        return (
+          <Box
+            key={block.id}
+            sx={{
+              display: 'flex',
+              gap: '6px',
+              paddingLeft: '20px',
+              fontFamily: style.fontFamily,
+              mt: (block.bulletIdx === 0 && block.lineIdx === 0) ? '4px' : '0px',
+              mb: block.isLast ? '8px' : (block.isLastLineInBullet ? '4px' : '0px'),
+            }}
+          >
+            <Box
+              sx={{
+                width: '6px',
+                flexShrink: 0,
+                fontSize: '11px',
+                color: '#1e293b',
+                lineHeight: 1.4,
+                textAlign: 'center',
+              }}
+            >
+              {block.isFirstLine ? '•' : ''}
+            </Box>
+            <Typography
+              sx={{
+                fontSize: '11px',
+                color: '#1e293b',
+                lineHeight: 1.4,
+                wordBreak: 'break-word',
+                fontFamily: style.fontFamily,
+              }}
+            >
+              {cleanLine}
+            </Typography>
+          </Box>
+        );
+      }
+      case 'projects-item-header': {
         const proj = projects[block.index];
         if (!proj) return null;
         return (
-          <Box key={proj.id || proj._id} sx={{ mb: '8px' }}>
+          <Box key={proj.id || proj._id} sx={{ mb: block.totalBullets === 0 ? '8px' : '0px' }}>
             {block.index === 0 && renderSectionHeader('Projects')}
             <Box
               className="resume-preview-section"
@@ -458,46 +497,83 @@ export const ResumePreview = ({
                   </Typography>
                 )}
               </Box>
-              {renderBullets(proj.description)}
               {renderItemActions('projects', proj.id || proj._id, 'description', proj.description)}
             </Box>
           </Box>
         );
       }
-      case 'certifications': {
-        if (!certifications || certifications.length === 0) return null;
+      case 'projects-item-bullet-line': {
+        const cleanLine = block.text;
         return (
-          <Box sx={{ mb: 0.5 }}>
-            {renderSectionHeader('Certifications')}
-            {certifications.map((cert) => (
-              <Box
-                key={cert.id || cert._id}
-                className="resume-preview-section"
-                sx={{
-                  position: 'relative',
-                  '&:hover .resume-actions-overlay': { display: 'flex' },
-                  mb: '4px',
-                }}
-              >
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                  <Typography sx={{ fontFamily: style.fontFamily, fontWeight: 'bold', fontSize: '12px', color: '#000000' }}>
-                    {cert.name} <span style={{ fontWeight: 'normal', color: '#475569' }}>— {cert.issuer}</span>
-                  </Typography>
-                  <Typography sx={{ fontFamily: style.fontFamily, fontSize: '11px', color: '#64748b' }}>
-                    {cert.date}
-                  </Typography>
-                </Box>
-                {renderItemActions('certifications', cert.id || cert._id, 'name', cert.name)}
-              </Box>
-            ))}
+          <Box
+            key={block.id}
+            sx={{
+              display: 'flex',
+              gap: '6px',
+              paddingLeft: '20px',
+              fontFamily: style.fontFamily,
+              mt: (block.bulletIdx === 0 && block.lineIdx === 0) ? '4px' : '0px',
+              mb: block.isLast ? '8px' : (block.isLastLineInBullet ? '4px' : '0px'),
+            }}
+          >
+            <Box
+              sx={{
+                width: '6px',
+                flexShrink: 0,
+                fontSize: '11px',
+                color: '#1e293b',
+                lineHeight: 1.4,
+                textAlign: 'center',
+              }}
+            >
+              {block.isFirstLine ? '•' : ''}
+            </Box>
+            <Typography
+              sx={{
+                fontSize: '11px',
+                color: '#1e293b',
+                lineHeight: 1.4,
+                wordBreak: 'break-word',
+                fontFamily: style.fontFamily,
+              }}
+            >
+              {cleanLine}
+            </Typography>
           </Box>
         );
       }
-      case 'achievements': {
-        if (!achievements || achievements.length === 0) return null;
+      case 'certifications-item': {
+        const cert = certifications[block.index];
+        if (!cert) return null;
         return (
-          <Box sx={{ mb: 0.3 }}>
-            {renderSectionHeader('Achievements')}
+          <Box key={cert.id || cert._id} sx={{ mb: '4px' }}>
+            {block.index === 0 && renderSectionHeader('Certifications')}
+            <Box
+              className="resume-preview-section"
+              sx={{
+                position: 'relative',
+                '&:hover .resume-actions-overlay': { display: 'flex' },
+              }}
+            >
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                <Typography sx={{ fontFamily: style.fontFamily, fontWeight: 'bold', fontSize: '12px', color: '#000000' }}>
+                  {cert.name} <span style={{ fontWeight: 'normal', color: '#475569' }}>— {cert.issuer}</span>
+                </Typography>
+                <Typography sx={{ fontFamily: style.fontFamily, fontSize: '11px', color: '#64748b' }}>
+                  {cert.date}
+                </Typography>
+              </Box>
+              {renderItemActions('certifications', cert.id || cert._id, 'name', cert.name)}
+            </Box>
+          </Box>
+        );
+      }
+      case 'achievements-item': {
+        const ach = achievements[block.index];
+        if (!ach) return null;
+        return (
+          <Box key={ach.id || ach._id} sx={{ mb: '4px' }}>
+            {block.index === 0 && renderSectionHeader('Achievements')}
             <Box
               component="ul"
               sx={{
@@ -509,21 +585,18 @@ export const ResumePreview = ({
                 listStyleType: 'disc',
               }}
             >
-              {achievements.map((ach) => (
-                <Box
-                  key={ach.id || ach._id}
-                  component="li"
-                  className="resume-preview-section"
-                  sx={{
-                    position: 'relative',
-                    '&:hover .resume-actions-overlay': { display: 'flex' },
-                    mb: 0.3,
-                  }}
-                >
-                  <span style={{ wordBreak: 'break-word', lineHeight: 1.4 }}>{ach.text}</span>
-                  {renderItemActions('achievements', ach.id || ach._id, 'text', ach.text)}
-                </Box>
-              ))}
+              <Box
+                component="li"
+                className="resume-preview-section"
+                sx={{
+                  position: 'relative',
+                  '&:hover .resume-actions-overlay': { display: 'flex' },
+                  mb: 0.3,
+                }}
+              >
+                <span style={{ wordBreak: 'break-word', lineHeight: 1.4 }}>{ach.text}</span>
+                {renderItemActions('achievements', ach.id || ach._id, 'text', ach.text)}
+              </Box>
             </Box>
           </Box>
         );
@@ -569,17 +642,105 @@ export const ResumePreview = ({
           list.push({ type: 'education-item', id: `education-${idx}`, index: idx });
         });
       } else if (section === 'experience' && experience && experience.length > 0) {
-        experience.forEach((_, idx) => {
-          list.push({ type: 'experience-item', id: `experience-${idx}`, index: idx });
+        experience.forEach((exp, idx) => {
+          const bulletTexts = exp.description ? exp.description.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0) : [];
+          const allLines = [];
+          bulletTexts.forEach((bulletText, bulletIdx) => {
+            const cleanText = bulletText.replace(/^[•\-\*\s\u2022]+/, '').trim();
+            const words = cleanText.split(/\s+/);
+            const wrappedLines = [];
+            let currentLine = '';
+            words.forEach(word => {
+              if ((currentLine + ' ' + word).trim().length <= 120) {
+                currentLine = (currentLine + ' ' + word).trim();
+              } else {
+                if (currentLine) wrappedLines.push(currentLine);
+                currentLine = word;
+              }
+            });
+            if (currentLine) wrappedLines.push(currentLine);
+            
+            wrappedLines.forEach((lineText, lineIdx) => {
+              allLines.push({
+                text: lineText,
+                bulletIdx,
+                lineIdx,
+                isFirstLine: lineIdx === 0,
+                isLastLineInBullet: lineIdx === wrappedLines.length - 1,
+              });
+            });
+          });
+          
+          list.push({ type: 'experience-item-header', id: `experience-${idx}-header`, index: idx, totalBullets: allLines.length });
+          
+          allLines.forEach((item, lineIndex) => {
+            list.push({
+              type: 'experience-item-bullet-line',
+              id: `experience-${idx}-bullet-line-${lineIndex}`,
+              index: idx,
+              bulletIdx: item.bulletIdx,
+              lineIdx: item.lineIdx,
+              text: item.text,
+              isFirstLine: item.isFirstLine,
+              isLastLineInBullet: item.isLastLineInBullet,
+              isLast: lineIndex === allLines.length - 1,
+            });
+          });
         });
       } else if (section === 'projects' && projects && projects.length > 0) {
-        projects.forEach((_, idx) => {
-          list.push({ type: 'projects-item', id: `projects-${idx}`, index: idx });
+        projects.forEach((proj, idx) => {
+          const bulletTexts = proj.description ? proj.description.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0) : [];
+          const allLines = [];
+          bulletTexts.forEach((bulletText, bulletIdx) => {
+            const cleanText = bulletText.replace(/^[•\-\*\s\u2022]+/, '').trim();
+            const words = cleanText.split(/\s+/);
+            const wrappedLines = [];
+            let currentLine = '';
+            words.forEach(word => {
+              if ((currentLine + ' ' + word).trim().length <= 120) {
+                currentLine = (currentLine + ' ' + word).trim();
+              } else {
+                if (currentLine) wrappedLines.push(currentLine);
+                currentLine = word;
+              }
+            });
+            if (currentLine) wrappedLines.push(currentLine);
+            
+            wrappedLines.forEach((lineText, lineIdx) => {
+              allLines.push({
+                text: lineText,
+                bulletIdx,
+                lineIdx,
+                isFirstLine: lineIdx === 0,
+                isLastLineInBullet: lineIdx === wrappedLines.length - 1,
+              });
+            });
+          });
+          
+          list.push({ type: 'projects-item-header', id: `projects-${idx}-header`, index: idx, totalBullets: allLines.length });
+          
+          allLines.forEach((item, lineIndex) => {
+            list.push({
+              type: 'projects-item-bullet-line',
+              id: `projects-${idx}-bullet-line-${lineIndex}`,
+              index: idx,
+              bulletIdx: item.bulletIdx,
+              lineIdx: item.lineIdx,
+              text: item.text,
+              isFirstLine: item.isFirstLine,
+              isLastLineInBullet: item.isLastLineInBullet,
+              isLast: lineIndex === allLines.length - 1,
+            });
+          });
         });
       } else if (section === 'certifications' && certifications && certifications.length > 0) {
-        list.push({ type: 'certifications', id: 'certifications' });
+        certifications.forEach((_, idx) => {
+          list.push({ type: 'certifications-item', id: `certifications-${idx}`, index: idx });
+        });
       } else if (section === 'achievements' && achievements && achievements.length > 0) {
-        list.push({ type: 'achievements', id: 'achievements' });
+        achievements.forEach((_, idx) => {
+          list.push({ type: 'achievements-item', id: `achievements-${idx}`, index: idx });
+        });
       }
     });
 
