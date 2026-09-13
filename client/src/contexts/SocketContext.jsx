@@ -19,7 +19,8 @@ export const SocketProvider = ({ children }) => {
       return;
     }
 
-    const serverUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+    const rawServerUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+    const serverUrl = rawServerUrl.replace(/\/+$/, '');
     const socketInstance = io(serverUrl, {
       auth: {
         token,
