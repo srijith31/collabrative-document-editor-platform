@@ -6,9 +6,32 @@ export const configureSecurity = (app) => {
   // Helmet helps secure Express apps by setting various HTTP headers
   app.use(helmet());
 
+  // Helper to validate allowed origins
+  const isOriginAllowed = (origin) => {
+    if (!origin) return true;
+    const cleanOrigin = origin.replace(/\/+$/, '');
+    const configuredOrigins = (process.env.CLIENT_URL || 'http://localhost:5173')
+      .split(',')
+      .map(u => u.trim().replace(/\/+$/, ''))
+      .filter(Boolean);
+
+    return (
+      configuredOrigins.includes('*') ||
+      configuredOrigins.includes(cleanOrigin) ||
+      cleanOrigin.endsWith('.vercel.app') ||
+      cleanOrigin.startsWith('http://localhost:')
+    );
+  };
+
   // CORS configuration
   const corsOptions = {
-    origin: process.env.CLIENT_URL || 'http://localhost:5173',
+    origin: (origin, callback) => {
+      if (isOriginAllowed(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error(`CORS blocked for origin: ${origin}`));
+      }
+    },
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,

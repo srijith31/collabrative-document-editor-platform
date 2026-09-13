@@ -35,7 +35,24 @@ const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: process.env.CLIENT_URL || 'http://localhost:5173',
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      const cleanOrigin = origin.replace(/\/+$/, '');
+      const configuredOrigins = (process.env.CLIENT_URL || 'http://localhost:5173')
+        .split(',')
+        .map(u => u.trim().replace(/\/+$/, ''))
+        .filter(Boolean);
+
+      if (
+        configuredOrigins.includes('*') ||
+        configuredOrigins.includes(cleanOrigin) ||
+        cleanOrigin.endsWith('.vercel.app') ||
+        cleanOrigin.startsWith('http://localhost:')
+      ) {
+        return callback(null, true);
+      }
+      return callback(new Error(`Socket CORS blocked for origin: ${origin}`));
+    },
     methods: ['GET', 'POST'],
     credentials: true,
   }
