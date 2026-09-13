@@ -1,329 +1,779 @@
-# CollabDoc ⚡
+# ⚡ CollabDoc
 
-> A modern, real-time collaborative document authoring and publication platform built with **React 19**, **Node.js (Express 5)**, **Socket.IO**, and **MongoDB**.
+### Real-Time Collaborative Document Editor & Publishing Platform
 
-![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)
-![React](https://img.shields.io/badge/React-19.2-61dafb?logo=react&logoColor=black)
-![Vite](https://img.shields.io/badge/Vite-8.0-646cff?logo=vite&logoColor=white)
-![Material UI](https://img.shields.io/badge/MUI-v9-007fff?logo=mui&logoColor=white)
+> **Write. Collaborate. Review. Publish. — Together, in real time.**
+
+CollabDoc is a full-stack collaborative document platform that combines **Google Docs-style real-time collaboration** with a **Microsoft Word-inspired editing experience**, advanced review workflows, document versioning, analytics, and specialized document builders.
+
+Built with **React 19, Node.js, Express 5, Socket.IO, MongoDB, TipTap, and Material UI**.
+
+<p align="center">
+
+<a href="https://collabrative-document-editor-platfo.vercel.app/">
+  <img src="https://img.shields.io/badge/🚀%20LIVE%20DEMO-Visit%20CollabDoc-blue?style=for-the-badge" alt="Live Demo"/>
+</a>
+
+<a href="https://github.com/srijith31/collabrative-document-editor-platform">
+  <img src="https://img.shields.io/badge/💻%20GITHUB-Repository-black?style=for-the-badge&logo=github" alt="GitHub"/>
+</a>
+
+</p>
+
+<p align="center">
+
+![License](https://img.shields.io/badge/License-ISC-blue.svg)
+![React](https://img.shields.io/badge/React-19.2-61DAFB?logo=react&logoColor=black)
+![Vite](https://img.shields.io/badge/Vite-8.0-646CFF?logo=vite&logoColor=white)
+![Material UI](https://img.shields.io/badge/MUI-v9-007FFF?logo=mui&logoColor=white)
 ![Express](https://img.shields.io/badge/Express-5.2-000000?logo=express&logoColor=white)
-![Socket.io](https://img.shields.io/badge/Socket.IO-4.8-010101?logo=socketdotio&logoColor=white)
+![Socket.IO](https://img.shields.io/badge/Socket.IO-4.8-010101?logo=socketdotio&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose%209.7-47A248?logo=mongodb&logoColor=white)
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
 
----
-
-## 📖 Overview
-
-**CollabDoc** is a full-stack, enterprise-grade collaborative document editing and publishing suite. It combines Google Docs-style real-time multi-user editing with a Microsoft Word-inspired Ribbon toolbar, automated version snapshotting, threaded inline comments, and track-changes suggestions.
-
-In addition to traditional free-form rich-text editing, CollabDoc provides specialized schema-driven builders:
-- 📄 **Interactive Resume Builder & Multi-Page Preview** with automated pagination and page-break continuation.
-- 📊 **Project Proposal Suite** for structured milestones, budgets, and executive summaries.
-- 🎓 **Academic & Engineering Report Builder** (customizable for collegiate formats like the Vardhaman College Report standard).
-- 📈 **Workspace Analytics & Contributor Leaderboard** for team productivity tracking.
+</p>
 
 ---
 
-## ✨ Key Features
+# 🚀 Live Demo
 
-### 1. Real-Time Collaboration & Synchronization
-- **Live Concurrent Editing:** Seamless multi-user document syncing powered by WebSockets (`Socket.IO`) and delta updates.
-- **Visual Cursor Tracking:** Color-coded remote cursor positions and selection highlights with user labels.
-- **Active Presence Engine:** Real-time online/idle indicators displaying avatars and active contributors.
-- **Room-Based Document Isolation:** Scalable socket namespaces and document-specific rooms.
+## 👉 [Open CollabDoc](https://collabrative-document-editor-platfo.vercel.app/)
 
-### 2. Desktop-Grade Rich-Text Authoring
-- **Word-Style Ribbon Toolbar:** Familiar tabbed interface (`Home`, `Insert`, `Layout`, `Review`, `View`) with quick-access actions.
-- **Comprehensive Formatting:** Typography controls, font sizes, heading hierarchies, lists, callouts, tables, inline code, and code blocks.
-- **Find & Replace:** Built-in search toolbar supporting search-in-doc, regex/match highlighting, and batch replacement.
-- **Dark & Light Mode UI:** Custom-tailored dark glassmorphic design system using Material UI (MUI v9) and CSS custom tokens.
+Experience the deployed application:
 
-### 3. Specialized Builders & Templates
-- **Dynamic Resume Builder:**
-  - Dedicated sections for Personal Info, Summary, Experience, Education, Projects, and Skills.
-  - Live multi-page preview with automatic page-break computation and dynamic continuation.
-  - Instant PDF download and export.
-- **Project Proposal Editor:**
-  - Structured templates for Problem Statement, Proposed Architecture, Timeline Milestones, Budget, and Team Rosters.
-- **Academic Project Report Generator:**
-  - Pre-structured university chapters (Title Page, Certificates, Acknowledgements, Abstract, Table of Contents, Chapters, Figures, Results, and Conclusions).
-- **Pre-Seeded Template Library:** Blank Document, Meeting Notes, Project Proposal, Research Notes, Resume Builder, and College Report.
-
-### 4. Review Workflow & Audit Trail
-- **Threaded Inline Comments:** Comment on document sections, tag collaborators, post replies, and mark queries as resolved.
-- **Suggestions Mode (Track Changes):** Propose inline edits that document owners can accept or reject with a single click.
-- **Version History & Restore:** Automated timestamped snapshots with one-click rollback to prior versions.
-- **Activity Feed & Audit Log:** Granular event logging (edits, comments, permissions, invitations) with user attribution.
-
-### 5. Access Control & Security
-- **Role-Based Access Control (RBAC):** Granular permission tiers (`OWNER`, `EDITOR`, `COMMENTER`, `VIEWER`).
-- **Secure Document Sharing:** Generate single-use or target-email invitation links with expiration control.
-- **Enterprise Security Middleware:** HTTP protection via **Helmet**, **CORS origin whitelisting**, **JWT authentication**, and **Express rate limiting**.
-
-### 6. Document Import, Export & Analytics
-- **Multi-Format Export:** Export documents to **PDF** (via jsPDF & html2pdf), **Microsoft Word (.docx)**, or formatted HTML.
-- **PDF Ingestion & Text Parsing:** Extract text directly from uploaded PDFs into the editor workspace.
-- **Workspace Analytics:** Contributor activity graphs, monthly creation charts, and team leaderboards powered by **Recharts**.
+- ⚡ Real-time collaborative editing
+- 👥 Multi-user presence
+- 🖱️ Remote cursor tracking
+- 📝 Rich-text document editing
+- 💬 Comments and discussions
+- ✏️ Suggestions / Track Changes
+- 🕐 Version history
+- 📄 Resume Builder
+- 📊 Project Proposal Builder
+- 🎓 Academic Report Builder
+- 📈 Workspace Analytics
+- 📤 PDF / DOCX export
+- 🌙 Dark / Light mode
 
 ---
 
-## 🏗️ Architecture & Tech Stack
+# 📖 Overview
 
+**CollabDoc** is a full-stack, real-time collaborative document authoring and publishing platform.
+
+It combines the collaborative experience of tools like **Google Docs** with a desktop-style editing experience inspired by **Microsoft Word**, while adding structured document builders, review workflows, analytics, and access control.
+
+### 🎯 Core Workflow
+
+```text
+Create
+   ↓
+Collaborate
+   ↓
+Review
+   ↓
+Version
+   ↓
+Publish
 ```
+
+---
+
+# ✨ Key Features
+
+## ⚡ 1. Real-Time Collaboration
+
+Powered by **Socket.IO** for low-latency communication between collaborators.
+
+* Live concurrent editing
+* Real-time document synchronization
+* Remote cursor tracking
+* Selection highlighting
+* Active collaborator presence
+* Online / idle indicators
+* Document-specific collaboration rooms
+* Real-time structured builder synchronization
+
+```text
+                    ┌──────────────┐
+                    │    User A    │
+                    └──────┬───────┘
+                           │
+                           ▼
+                    ┌──────────────┐
+                    │   Socket.IO  │
+                    └──────┬───────┘
+                           │
+                ┌──────────┴──────────┐
+                ▼                     ▼
+        ┌──────────────┐      ┌──────────────┐
+        │    User B    │      │    User C    │
+        └──────────────┘      └──────────────┘
+```
+
+---
+
+# 📝 2. Desktop-Grade Rich Text Editor
+
+CollabDoc provides a professional document editing experience.
+
+### Ribbon Interface
+
+* Home
+* Insert
+* Layout
+* Review
+* View
+
+### Formatting
+
+* Typography controls
+* Font sizes
+* Headings
+* Lists
+* Tables
+* Callouts
+* Inline code
+* Code blocks
+* Rich-text formatting
+
+### Productivity Tools
+
+* Find & Replace
+* Regex / match highlighting
+* Batch replacement
+* Dark mode
+* Light mode
+
+---
+
+# 📄 3. Specialized Document Builders
+
+CollabDoc goes beyond traditional document editing.
+
+## 📑 Resume Builder
+
+Create professional resumes with:
+
+* Personal information
+* Professional summary
+* Experience
+* Education
+* Projects
+* Skills
+* Multi-page preview
+* Automatic pagination
+* Page-break continuation
+* PDF export
+
+---
+
+## 📊 Project Proposal Builder
+
+Create structured project proposals containing:
+
+* Problem Statement
+* Proposed Architecture
+* Project Timeline
+* Milestones
+* Budget
+* Team Members
+* Executive Summary
+
+---
+
+## 🎓 Academic Report Builder
+
+Generate structured academic and engineering reports.
+
+Supported sections include:
+
+```text
+Title Page
+    ↓
+Certificate
+    ↓
+Acknowledgement
+    ↓
+Abstract
+    ↓
+Table of Contents
+    ↓
+Chapters
+    ↓
+Figures
+    ↓
+Results
+    ↓
+Conclusion
+```
+
+---
+
+# 💬 4. Review & Collaboration Workflow
+
+CollabDoc provides a complete document review system.
+
+### 💬 Threaded Comments
+
+* Inline comments
+* Replies
+* Collaborator tagging
+* Resolve / reopen discussions
+
+### ✏️ Suggestions Mode
+
+Users can propose document changes before they are applied.
+
+```text
+Author
+   ↓
+Edit Proposal
+   ↓
+Suggestion
+   ↓
+Reviewer
+   ├── Accept
+   └── Reject
+```
+
+### 🕐 Version History
+
+* Timestamped snapshots
+* Previous version browsing
+* One-click restore
+* Document rollback
+
+### 📋 Activity Feed
+
+Track:
+
+* Document edits
+* Comments
+* Invitations
+* Permission changes
+* Collaboration activity
+
+---
+
+# 🔐 5. Security & Access Control
+
+CollabDoc uses role-based access control.
+
+| Role         | Permissions           |
+| ------------ | --------------------- |
+| 👑 OWNER     | Full document control |
+| ✏️ EDITOR    | Edit document         |
+| 💬 COMMENTER | Comment and review    |
+| 👁️ VIEWER   | Read-only access      |
+
+### Security Features
+
+* JWT authentication
+* BCrypt password hashing
+* Helmet security middleware
+* CORS origin validation
+* Express rate limiting
+* Protected API endpoints
+* Expiring invitation links
+* Targeted document invitations
+
+---
+
+# 📤 6. Import & Export
+
+## Export Formats
+
+```text
+Document
+   │
+   ├── PDF
+   ├── DOCX
+   └── HTML
+```
+
+### Supported Technologies
+
+* jsPDF
+* html2pdf.js
+* html2canvas
+* pdfjs-dist
+* docx
+
+### PDF Import
+
+Upload PDF documents and extract their text directly into the editor workspace.
+
+---
+
+# 📈 7. Workspace Analytics
+
+Track workspace productivity and collaboration.
+
+Analytics include:
+
+* Contributor activity
+* Monthly document creation
+* Productivity trends
+* Team contribution
+* Contributor leaderboard
+* Workspace activity
+
+Powered by **Recharts**.
+
+---
+
+# 🏗️ Architecture
+
+```text
+                         ┌──────────────────────┐
+                         │       React 19       │
+                         │      Frontend        │
+                         └──────────┬───────────┘
+                                    │
+                         REST API + Socket.IO
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │     Express 5 API    │
+                         │      Node.js         │
+                         └──────────┬───────────┘
+                                    │
+                  ┌─────────────────┼─────────────────┐
+                  │                 │                 │
+                  ▼                 ▼                 ▼
+          Authentication     Collaboration       Documents
+                  │                 │                 │
+                  └─────────────────┼─────────────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │       MongoDB        │
+                         │      Mongoose 9      │
+                         └──────────────────────┘
+```
+
+---
+
+# 📁 Project Structure
+
+```text
 collabrative-document-editor-platform/
-├── client/                     # React 19 Single Page Application
+│
+├── client/
 │   ├── src/
-│   │   ├── assets/             # Branding assets, icons, logos
-│   │   ├── components/         # Editor, Ribbon, Comments, Presence, Analytics
-│   │   ├── contexts/           # AuthContext, SocketContext
-│   │   ├── pages/              # Landing, Login, Register, Dashboard, DocumentPage
-│   │   ├── services/           # Axios HTTP API services
-│   │   └── utils/              # Export helpers (PDF/DOCX), date formatters
+│   │   ├── assets/
+│   │   ├── components/
+│   │   ├── contexts/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   └── utils/
+│   │
 │   ├── package.json
 │   └── vite.config.js
-└── server/                     # Node.js + Express 5 Backend
-    ├── config/                 # MongoDB database connector & seed data
-    ├── controllers/            # Route controllers & business logic
-    ├── middleware/             # JWT auth, error handlers, rate-limiting & Helmet
-    ├── models/                 # Mongoose schemas (Document, User, Version, etc.)
-    ├── routes/                 # Express API routes
-    ├── services/               # Document and activity services
-    ├── sockets/                # Socket.IO connection & event handlers
-    ├── tests/                  # Integration, Jest, and socket smoke tests
+│
+└── server/
+    ├── config/
+    ├── controllers/
+    ├── middleware/
+    ├── models/
+    ├── routes/
+    ├── services/
+    ├── sockets/
+    ├── tests/
     └── package.json
 ```
 
-### Technology Breakdown
+---
 
-| Layer | Technologies |
-|---|---|
-| **Frontend Framework** | React 19, React Router DOM v7, Vite 8 |
-| **UI Components & Styling** | Material UI (MUI v9), Emotion, Custom Vanilla CSS |
-| **Rich Text Engines** | TipTap (`@tiptap/react`, `@tiptap/pm`), Quill 2 |
-| **Real-Time Networking** | Socket.IO Client v4.8 |
-| **Data Visualization** | Recharts v3.8 |
-| **Document Generation** | `docx`, `jspdf`, `html2canvas`, `html2pdf.js`, `pdfjs-dist` |
-| **Backend Framework** | Node.js (ES Modules), Express 5 |
-| **Database & ODM** | MongoDB, Mongoose 9.7 |
-| **Security & Authentication** | JSON Web Tokens (JWT), BCrypt.js, Helmet, Express Rate Limit |
-| **Testing** | Jest 30, Supertest, Vitest |
+# 🧰 Technology Stack
+
+| Layer               | Technologies                     |
+| ------------------- | -------------------------------- |
+| 🎨 Frontend         | React 19, Vite 8                 |
+| 🧭 Routing          | React Router DOM v7              |
+| 🎨 UI               | Material UI v9, Emotion, CSS     |
+| 📝 Rich Text        | TipTap, Quill 2                  |
+| ⚡ Real-Time         | Socket.IO 4.8                    |
+| 📊 Analytics        | Recharts 3.8                     |
+| 🖥️ Backend         | Node.js, Express 5               |
+| 🗄️ Database        | MongoDB                          |
+| 🔗 ODM              | Mongoose 9.7                     |
+| 🔐 Authentication   | JWT, BCrypt.js                   |
+| 🛡️ Security        | Helmet, Express Rate Limit, CORS |
+| 📄 PDF              | jsPDF, html2pdf, html2canvas     |
+| 📃 DOCX             | docx                             |
+| 🧪 Backend Testing  | Jest, Supertest                  |
+| 🧪 Frontend Testing | Vitest                           |
+| ☁️ Deployment       | Vercel + Node-compatible hosting |
 
 ---
 
-## 🚀 Getting Started
+# 🚀 Getting Started
 
-### Prerequisites
+## Prerequisites
 
-Ensure you have the following installed on your machine:
-- **Node.js:** `v18.x` or higher (v20+ recommended)
-- **npm:** `v9.x` or higher
-- **MongoDB:** A local MongoDB instance (`mongodb://localhost:27017`) or a [MongoDB Atlas](https://www.mongodb.com/atlas) connection URI.
+Make sure you have:
+
+* Node.js `18+` — `20+` recommended
+* npm `9+`
+* MongoDB local instance **or** MongoDB Atlas
 
 ---
 
-### 1. Clone the Repository
+# 1️⃣ Clone the Repository
 
 ```bash
 git clone https://github.com/srijith31/collabrative-document-editor-platform.git
+
 cd collabrative-document-editor-platform
 ```
 
 ---
 
-### 2. Backend Setup (`server`)
+# 2️⃣ Backend Setup
 
-1. Navigate to the server folder:
-   ```bash
-   cd server
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Configure environment variables:
-   Create a `.env` file in the `server` directory (or copy from `.env.example`):
-   ```bash
-   cp .env.example .env
-   ```
-
-   Configure your variables:
-   ```env
-   PORT=5000
-   MONGO_URI=mongodb://localhost:27017/collab_doc_editor
-   JWT_SECRET=your_super_secret_jwt_key_here
-   CLIENT_URL=http://localhost:5173
-   ```
-
-4. Start the backend server:
-   ```bash
-   # Development mode with Nodemon
-   npm run dev
-
-   # Or standard production mode
-   npm start
-   ```
-   > **Note:** On the first launch, the server automatically connects to MongoDB and seeds default document templates (Meeting Notes, Resume Builder, Proposal, Academic Report).
-
----
-
-### 3. Frontend Setup (`client`)
-
-1. Open a new terminal and navigate to the client folder:
-   ```bash
-   cd client
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Configure environment variables:
-   Create a `.env` file in the `client` directory:
-   ```bash
-   cp .env.example .env
-   ```
-
-   Set the backend API endpoint:
-   ```env
-   VITE_API_URL=http://localhost:5000
-   ```
-
-4. Launch the Vite development server:
-   ```bash
-   npm run dev
-   ```
-
-5. Open your browser and visit:
-   ```
-   http://localhost:5173
-   ```
-
----
-
-## 🔌 Socket.IO Real-Time Events
-
-The real-time collaboration engine operates on the following core events:
-
-| Event Name | Direction | Payload | Description |
-|---|---|---|---|
-| `join-document` | Client ➔ Server | `{ documentId }` | Subscribes socket to the document room and broadcasts active presence |
-| `leave-document` | Client ➔ Server | `{ documentId }` | Unsubscribes socket and updates presence for remaining users |
-| `send-changes` | Client ➔ Server | `{ documentId, delta }` | Broadcasts rich-text delta edits to all other room collaborators |
-| `receive-changes` | Server ➔ Client | `delta` | Receives delta operations from remote collaborators and applies them |
-| `cursor-move` | Client ➔ Server | `{ documentId, range }` | Emits current caret index and selection range |
-| `cursor-update` | Server ➔ Client | `{ socketId, userId, username, avatarColor, range }` | Renders remote collaborator carets in real-time |
-| `presence-update` | Server ➔ Client | `Array<{ socketId, userId, username, avatarColor }>` | Updates the active collaborators avatar bar |
-| `send-resume-changes` | Client ➔ Server | `{ documentId, resumeData, changedField }` | Synchronizes structured resume fields across peers |
-| `send-proposal-changes`| Client ➔ Server | `{ documentId, proposalData, collegeReportData }` | Synchronizes project proposal and academic report structures |
-
----
-
-## 📡 REST API Reference
-
-All protected endpoints require an `Authorization: Bearer <token>` header.
-
-### Authentication (`/api/auth`)
-- `POST /api/auth/register` - Create a new user account.
-- `POST /api/auth/login` - Authenticate user & receive JWT token.
-- `GET /api/auth/me` - Retrieve current authenticated user profile.
-
-### Documents (`/api/documents`)
-- `GET /api/documents` - Fetch all documents accessible to the user (owned or shared).
-- `POST /api/documents` - Create a new blank or template-based document.
-- `GET /api/documents/:id` - Fetch document details, content, and user permissions.
-- `PUT /api/documents/:id` - Update document title, content, or metadata.
-- `DELETE /api/documents/:id` - Delete document (owner only).
-
-### Collaboration & Review
-- `GET /api/comments/:documentId` - Fetch all comments and threads for a document.
-- `POST /api/comments/:documentId` - Add an inline comment or reply.
-- `PATCH /api/comments/:commentId/resolve` - Toggle comment resolution status.
-- `GET /api/suggestions/:documentId` - Retrieve suggested edits.
-- `POST /api/suggestions/:documentId` - Propose a new suggestion (track changes).
-- `PATCH /api/suggestions/:suggestionId` - Accept or reject a proposed edit.
-- `GET /api/versions/:documentId` - List saved version history snapshots.
-- `POST /api/versions/:documentId/restore` - Restore document to a prior snapshot.
-
-### Sharing & Workspace
-- `POST /api/invites/:documentId` - Generate a shareable invitation link or send an invite.
-- `GET /api/notifications` - Retrieve in-app notifications.
-- `GET /api/activity` - Fetch workspace activity feed and contributor audit logs.
-- `GET /api/analytics` - Fetch workspace productivity metrics and charts.
-- `GET /api/templates` - Fetch pre-configured document templates.
-
----
-
-## 🧪 Testing & Validation
-
-The platform includes unit, integration, and socket smoke tests:
-
-### Running Backend Tests
 ```bash
 cd server
 
-# Run unit and integration tests with Jest
-npm test
-
-# Run real-time Socket.IO smoke tests
-npm run test:socket
+npm install
 ```
 
-### Running Frontend Tests
+Create your environment file:
+
+```bash
+cp .env.example .env
+```
+
+Configure:
+
+```env
+PORT=5000
+
+MONGO_URI=mongodb://localhost:27017/collab_doc_editor
+
+JWT_SECRET=your_super_secret_jwt_key
+
+CLIENT_URL=http://localhost:5173
+```
+
+Start the backend:
+
+```bash
+npm run dev
+```
+
+Or:
+
+```bash
+npm start
+```
+
+---
+
+# 3️⃣ Frontend Setup
+
+Open another terminal:
+
 ```bash
 cd client
 
-# Run Vitest test suite
-npm test
+npm install
+```
 
-# Run ESLint validation
+Create your environment file:
+
+```bash
+cp .env.example .env
+```
+
+Configure:
+
+```env
+VITE_API_URL=http://localhost:5000
+```
+
+Start the frontend:
+
+```bash
+npm run dev
+```
+
+Open:
+
+```text
+http://localhost:5173
+```
+
+---
+
+# 🔌 Socket.IO Events
+
+| Event                   | Direction       | Purpose                   |
+| ----------------------- | --------------- | ------------------------- |
+| `join-document`         | Client → Server | Join document room        |
+| `leave-document`        | Client → Server | Leave document room       |
+| `send-changes`          | Client → Server | Send document changes     |
+| `receive-changes`       | Server → Client | Receive remote changes    |
+| `cursor-move`           | Client → Server | Broadcast cursor position |
+| `cursor-update`         | Server → Client | Update remote cursors     |
+| `presence-update`       | Server → Client | Update active users       |
+| `send-resume-changes`   | Client → Server | Sync resume data          |
+| `send-proposal-changes` | Client → Server | Sync proposal/report data |
+
+---
+
+# 📡 REST API
+
+All protected routes require:
+
+```http
+Authorization: Bearer <token>
+```
+
+## Authentication
+
+```text
+POST   /api/auth/register
+POST   /api/auth/login
+GET    /api/auth/me
+```
+
+## Documents
+
+```text
+GET      /api/documents
+POST     /api/documents
+GET      /api/documents/:id
+PUT      /api/documents/:id
+DELETE   /api/documents/:id
+```
+
+## Comments
+
+```text
+GET      /api/comments/:documentId
+POST     /api/comments/:documentId
+PATCH    /api/comments/:commentId/resolve
+```
+
+## Suggestions
+
+```text
+GET      /api/suggestions/:documentId
+POST     /api/suggestions/:documentId
+PATCH    /api/suggestions/:suggestionId
+```
+
+## Versions
+
+```text
+GET      /api/versions/:documentId
+POST     /api/versions/:documentId/restore
+```
+
+## Workspace
+
+```text
+POST     /api/invites/:documentId
+GET      /api/notifications
+GET      /api/activity
+GET      /api/analytics
+GET      /api/templates
+```
+
+---
+
+# 🧪 Testing
+
+## Backend
+
+```bash
+cd server
+
+npm test
+```
+
+Socket.IO smoke tests:
+
+```bash
+npm run test:socket
+```
+
+## Frontend
+
+```bash
+cd client
+
+npm test
+```
+
+Lint:
+
+```bash
 npm run lint
 ```
 
 ---
 
-## 🌐 Deployment Guide
+# 🌐 Deployment
 
-### Deploying the Frontend (Vercel)
-1. Link the repository to [Vercel](https://vercel.com).
-2. Set the **Root Directory** to `client`.
-3. Set the **Build Command** to `npm run build` and **Output Directory** to `dist`.
-4. Configure the environment variable:
-   - `VITE_API_URL`: URL of your deployed backend (e.g., `https://api.collabdoc.yourdomain.com`).
-5. Deploy. SPA routing is already configured in `client/vercel.json`.
+## Frontend — Vercel
 
-### Deploying the Backend (Render / Railway / AWS / VPS)
-1. Deploy the `server` directory as a Node service.
-2. Set the **Start Command** to `npm start`.
-3. Configure environment variables in your hosting dashboard:
-   - `PORT`: `5000` (or assigned port)
-   - `MONGO_URI`: Your MongoDB Atlas connection string
-   - `JWT_SECRET`: A secure, random secret key
-   - `CLIENT_URL`: URL of your deployed frontend (e.g., `https://collabdoc.vercel.app`)
-4. Ensure your hosting provider supports persistent WebSocket connections (WebSockets are enabled by default on Render and Railway).
+Configure:
 
----
+```text
+Root Directory: client
+Build Command: npm run build
+Output Directory: dist
+```
 
-## 🤝 Contributing
+Environment variable:
 
-Contributions are welcome! Please follow these steps:
-1. **Fork** the repository.
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
-3. Commit your changes (`git commit -m "Add AmazingFeature"`).
-4. Push to the branch (`git push origin feature/AmazingFeature`).
-5. Open a **Pull Request**.
+```env
+VITE_API_URL=https://your-backend-url.com
+```
+
+### 🚀 Production Frontend
+
+```text
+https://collabrative-document-editor-platfo.vercel.app/
+```
+
+Or simply:
+
+### 👉 [Open Live Demo](https://collabrative-document-editor-platfo.vercel.app/)
 
 ---
 
-## 📄 License
+# 🗄️ MongoDB Atlas
 
-This project is licensed under the [ISC License](LICENSE).
+For production deployment, use MongoDB Atlas.
+
+Set:
+
+```env
+MONGO_URI=<your-mongodb-atlas-connection-string>
+```
+
+Never commit your `.env` file or database credentials to GitHub.
+
+---
+
+# 🔄 Application Workflow
+
+```text
+                    ┌───────────────┐
+                    │     Login     │
+                    └───────┬───────┘
+                            │
+                            ▼
+                    ┌───────────────┐
+                    │   Dashboard   │
+                    └───────┬───────┘
+                            │
+                ┌───────────┼───────────┐
+                ▼           ▼           ▼
+           Documents    Templates   Analytics
+                │           │
+                ▼           ▼
+          Rich Editor    Builders
+                │
+        ┌───────┼────────┐
+        ▼       ▼        ▼
+     Comments  Review  Collaboration
+        │       │        │
+        └───────┼────────┘
+                ▼
+         Version History
+                │
+                ▼
+          Export / Publish
+```
+
+---
+
+# 🗺️ Roadmap
+
+* [ ] AI-assisted document editing
+* [ ] AI writing suggestions
+* [ ] Advanced document search
+* [ ] Offline editing
+* [ ] Conflict-free collaborative editing
+* [ ] Additional resume templates
+* [ ] Google Drive integration
+* [ ] Microsoft OneDrive integration
+* [ ] Email notifications
+* [ ] Organization / workspace management
+* [ ] Advanced permission policies
+* [ ] Document activity heatmaps
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome!
+
+### 1. Fork the repository
+
+```bash
+git checkout -b feature/AmazingFeature
+```
+
+### 2. Commit your changes
+
+```bash
+git commit -m "Add AmazingFeature"
+```
+
+### 3. Push your branch
+
+```bash
+git push origin feature/AmazingFeature
+```
+
+### 4. Open a Pull Request
+
+---
+
+# 📄 License
+
+This project is licensed under the **ISC License**.
+
+See [`LICENSE`](LICENSE) for details.
+
+---
+
+# 👨‍💻 Author
+
+## Srijith
+
+**Full-Stack Developer | AI/ML Enthusiast | Problem Solver**
+
+Built with ❤️ using:
+
+**React • Node.js • Express • Socket.IO • MongoDB**
+
+<p align="center">
+
+<a href="https://collabrative-document-editor-platfo.vercel.app/">
+  <img src="https://img.shields.io/badge/🚀%20LIVE%20DEMO-Open%20CollabDoc-blue?style=for-the-badge" alt="Live Demo"/>
+</a>
+
+<a href="https://github.com/srijith31/collabrative-document-editor-platform">
+  <img src="https://img.shields.io/badge/⭐%20STAR%20ON%20GITHUB-Repository-black?style=for-the-badge&logo=github" alt="GitHub"/>
+</a>
+
+</p>
 
 ---
 
 <p align="center">
-  Crafted with ❤️ by <a href="https://github.com/srijith31">Srijith</a> and Contributors.
+
+### ⚡ CollabDoc
+
+**Collaborate. Create. Review. Publish.**
+
+⭐ Star the repository if you find it useful!
+
 </p>
